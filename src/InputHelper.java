@@ -4,8 +4,8 @@ public class InputHelper {
     public static void main(String[] args) {
         //Test Methods
 
-        Scanner scan = new Scanner((System.in));
-        System.out.println(getRangedInt(scan, 5,10, "enter a ranged int from 5-10"));
+        Scanner scan = new Scanner(System.in);
+        System.out.println(YNConfirm(scan, "enter Y or N"));
     }
 
     //this method loops until a valid int is received, returns int value.
@@ -46,6 +46,46 @@ public class InputHelper {
         return x;
     }
 
+    //this method loops until a double is entered.
+    public static double getDouble(Scanner in, String prompt){
+        boolean done = false;
+        double x = 0;
+
+        System.out.println(prompt);
+        do {
+            if(in.hasNextDouble()){
+                x = in.nextDouble();
+                done = true;
+            }else{
+                System.out.println("You have entered an invalid Double. Please try again");
+            }
+            in.nextLine();
+        } while (!done);
+
+        return x;
+    }
+
+    //this returns a boolean if you want to continue which is true and false if not.
+    public static boolean YNConfirm(Scanner in, String prompt){
+        boolean done = false;
+        boolean con = false;
+        String check;
+        System.out.println(prompt);
+
+        do {
+            check = in.nextLine();
+            if(check.equalsIgnoreCase("Y")){
+                con = true;
+                done = true;
+            } else if (check.equalsIgnoreCase("N")) {
+                con = false;
+                done = true;
+            }else{
+                System.out.println("You have entered an invalid input. Please try again");
+            }
+        } while (!done);
+        return con;
+    }
 
 
 
